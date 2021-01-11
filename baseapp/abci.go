@@ -411,6 +411,7 @@ func (app *BaseApp) Query(req abci.RequestQuery) (res abci.ResponseQuery) {
 		sdkerrors.QueryResult(sdkerrors.Wrap(sdkerrors.ErrUnknownRequest, "no query path provided"))
 	}
 
+	fmt.Printf("Query Path: %+v\n", path)
 	switch path[0] {
 	// "/app" prefix for special application queries
 	case "app":
