@@ -1,6 +1,8 @@
 package keeper
 
 import (
+	"fmt"
+
 	abci "github.com/tendermint/tendermint/abci/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -12,6 +14,7 @@ import (
 // NewQuerier creates a querier for auth REST endpoints
 func NewQuerier(k AccountKeeper, legacyQuerierCdc *codec.LegacyAmino) sdk.Querier {
 	return func(ctx sdk.Context, path []string, req abci.RequestQuery) ([]byte, error) {
+		fmt.Printf("Auth Query: %+v\n", path)
 		switch path[0] {
 		case types.QueryAccount:
 			return queryAccount(ctx, req, k, legacyQuerierCdc)
