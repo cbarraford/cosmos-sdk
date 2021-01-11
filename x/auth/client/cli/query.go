@@ -95,6 +95,7 @@ func GetAccountCmd() *cobra.Command {
 				return err
 			}
 
+			fmt.Println("querying account.......")
 			return clientCtx.PrintProto(res.Account)
 		},
 	}
