@@ -127,6 +127,7 @@ func BroadcastTx(clientCtx client.Context, txf Factory, msgs ...sdk.Msg) error {
 		return err
 	}
 
+	fmt.Printf(">>>>>>>>>>>>>>>>>>>> TxBytes: %s\n", string(txBytes))
 	// broadcast to a Tendermint node
 	res, err := clientCtx.BroadcastTx(txBytes)
 	if err != nil {
