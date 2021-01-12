@@ -39,6 +39,7 @@ func BroadcastTxRequest(clientCtx client.Context) http.HandlerFunc {
 		}
 
 		// NOTE: amino is used intentionally here, don't migrate it!
+		fmt.Printf(">>>>>>> BroadcastTxRequest: %s\n", string(body))
 		err = clientCtx.LegacyAmino.UnmarshalJSON(body, &req)
 		if err != nil {
 			err := fmt.Errorf("this transaction cannot be broadcasted via legacy REST endpoints, because it does not support"+
