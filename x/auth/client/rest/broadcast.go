@@ -41,6 +41,7 @@ func BroadcastTxRequest(clientCtx client.Context) http.HandlerFunc {
 		// NOTE: amino is used intentionally here, don't migrate it!
 		fmt.Printf(">>>>>>> BroadcastTxRequest: %s\n", string(body))
 		err = clientCtx.LegacyAmino.UnmarshalJSON(body, &req)
+		fmt.Printf(">>>>>>> Err: %s\n", err)
 		if err != nil {
 			err := fmt.Errorf("this transaction cannot be broadcasted via legacy REST endpoints, because it does not support"+
 				" Amino serialization. Please either use CLI, gRPC, gRPC-gateway, or directly query the Tendermint RPC"+
