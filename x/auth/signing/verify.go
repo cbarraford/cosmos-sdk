@@ -14,10 +14,14 @@ import (
 func VerifySignature(pubKey cryptotypes.PubKey, signerData SignerData, sigData signing.SignatureData, handler SignModeHandler, tx sdk.Tx) error {
 	switch data := sigData.(type) {
 	case *signing.SingleSignatureData:
+		fmt.Printf(">>> Data Sign Mode: %+v\n", data.SignMode)
+		fmt.Printf(">>> Signer Data: %+v\n", signerData)
+		fmt.Printf(">>> Tx: %+v\n", tx)
 		signBytes, err := handler.GetSignBytes(data.SignMode, signerData, tx)
 		if err != nil {
 			return err
 		}
+		fmt.Printf(">>> Signature: %+v\n\n%+v\n", signBytes, data.Signature)
 		if !pubKey.VerifySignature(signBytes, data.Signature) {
 			return fmt.Errorf("unable to verify single signer signature")
 		}
