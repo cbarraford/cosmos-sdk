@@ -262,6 +262,7 @@ func (svd SigVerificationDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simul
 		if !simulate {
 			err := authsigning.VerifySignature(pubKey, signerData, sig.Data, svd.signModeHandler, tx)
 			if err != nil {
+				fmt.Printf(">>>>>>>>>> VerifySignature Failure: %s\n", err)
 				var errMsg string
 				if onlyAminoSigners {
 					// If all signers are using SIGN_MODE_LEGACY_AMINO, we rely on VerifySignature to check account sequence number,
