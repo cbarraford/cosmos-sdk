@@ -36,12 +36,14 @@ func EncodeTxRequestHandlerFn(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
+		fmt.Printf(">>>>>>>>>>>>>>> Encode body: %s\n", string(body))
+
 		// NOTE: amino is used intentionally here, don't migrate it
 		err = clientCtx.LegacyAmino.UnmarshalJSON(body, &req)
 		// If there's an unmarshalling error, we assume that it's because we're
 		// using amino to unmarshal a non-amino tx.
 		if err != nil {
-			fmt.Print(">>>>>>>>>>>>>>> Encode Err: %s\n", err)
+			fmt.Printf(">>>>>>>>>>>>>>> Encode Err: %s\n", err)
 			if rest.CheckBadRequestError(w, ErrEncodeDecode) {
 				return
 			}
