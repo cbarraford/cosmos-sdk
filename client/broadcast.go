@@ -21,6 +21,7 @@ import (
 // an intermediate structure which is logged if the context has a logger
 // defined.
 func (ctx Context) BroadcastTx(txBytes []byte) (res *sdk.TxResponse, err error) {
+	fmt.Printf(">>>>> Broadcast Tx (%+v): %s", ctx.BroadcastMode, string(txBytes))
 	switch ctx.BroadcastMode {
 	case flags.BroadcastSync:
 		res, err = ctx.BroadcastTxSync(txBytes)
