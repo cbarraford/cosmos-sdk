@@ -16,12 +16,12 @@ func VerifySignature(pubKey cryptotypes.PubKey, signerData SignerData, sigData s
 	case *signing.SingleSignatureData:
 		fmt.Printf(">>> Data Sign Mode: %+v\n", data.SignMode)
 		fmt.Printf(">>> Signer Data: %+v\n", signerData)
-		fmt.Printf(">>> Tx: %+v\n", string(tx))
+		// fmt.Printf(">>> Tx: %+v\n", string(tx))
 		signBytes, err := handler.GetSignBytes(data.SignMode, signerData, tx)
 		if err != nil {
 			return err
 		}
-		fmt.Printf(">>> Signature: %+v\n\n%+v\n", string(signBytes), string(data.Signature))
+		// fmt.Printf(">>> Signature: %+v\n\n%+v\n", string(signBytes), string(data.Signature))
 		if !pubKey.VerifySignature(signBytes, data.Signature) {
 			return fmt.Errorf("unable to verify single signer signature")
 		}
