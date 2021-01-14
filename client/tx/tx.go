@@ -76,6 +76,7 @@ func GenerateTx(clientCtx client.Context, txf Factory, msgs ...sdk.Msg) error {
 // given set of messages. It will also simulate gas requirements if necessary.
 // It will return an error upon failure.
 func BroadcastTx(clientCtx client.Context, txf Factory, msgs ...sdk.Msg) error {
+	fmt.Println(">>>>>>> Broadcast Tx Foo 1")
 	txf, err := PrepareFactory(clientCtx, txf)
 	if err != nil {
 		return err
