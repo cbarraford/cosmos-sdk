@@ -41,6 +41,7 @@ func EncodeTxRequestHandlerFn(clientCtx client.Context) http.HandlerFunc {
 		// If there's an unmarshalling error, we assume that it's because we're
 		// using amino to unmarshal a non-amino tx.
 		if err != nil {
+			fmt.Print(">>>>>>>>>>>>>>> Encode Err: %s\n", err)
 			if rest.CheckBadRequestError(w, ErrEncodeDecode) {
 				return
 			}
