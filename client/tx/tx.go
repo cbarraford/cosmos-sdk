@@ -122,6 +122,9 @@ func BroadcastTx(clientCtx client.Context, txf Factory, msgs ...sdk.Msg) error {
 		return err
 	}
 
+	txJsonBytes, _ := clientCtx.TxConfig.TxJSONEncoder()(tx.GetTx())
+	fmt.Printf("TxJsonBytes: %s\n", string(txJsonBytes))
+
 	txBytes, err := clientCtx.TxConfig.TxEncoder()(tx.GetTx())
 	if err != nil {
 		return err
