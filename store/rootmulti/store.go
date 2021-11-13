@@ -370,6 +370,14 @@ func (rs *Store) Commit() types.CommitID {
 	}
 }
 
+func (rs *Store) SetPruneHeights(ints []int64) {
+	rs.pruneHeights = ints
+}
+
+func (rs *Store) PruneStores() {
+	pruneStores()
+}
+
 // pruneStores will batch delete a list of heights from each mounted sub-store.
 // Afterwards, pruneHeights is reset.
 func (rs *Store) pruneStores() {
@@ -1001,6 +1009,10 @@ func getPruningHeights(db dbm.DB) ([]int64, error) {
 	}
 
 	return prunedHeights, nil
+}
+
+func FlushMetadata(db dbm.DB, version int64, cInfo *types.CommitInfo, pruneHeights []int64) {
+	flushMetadata(db, version, cInfo, pruneHeights)
 }
 
 func flushMetadata(db dbm.DB, version int64, cInfo *types.CommitInfo, pruneHeights []int64) {
