@@ -375,7 +375,7 @@ func (rs *Store) SetPruneHeights(ints []int64) {
 }
 
 func (rs *Store) PruneStores() {
-	pruneStores()
+	rs.pruneStores()
 }
 
 // pruneStores will batch delete a list of heights from each mounted sub-store.
